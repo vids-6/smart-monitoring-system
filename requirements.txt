@@ -1,0 +1,43 @@
+# AI-Based Supermarket Inventory Monitoring System - Python dependencies
+# Derived from the import statements and %pip/!pip cells of the notebooks in notebooks/.
+# Original environment: Google Colab, Python 3.13, NVIDIA Tesla T4 (see docs/MODELS_AND_DATASETS.md).
+#
+# Pins below are ONLY those that the project itself states or that were observed in notebook logs.
+# Unpinned packages: exact versions used in Colab were not recorded -> see "Versions needing verification" in README.
+
+# --- Detection / tracking (notebooks 01, 03, 04, dashboard) ---
+# best.pt was saved by ultralytics 8.4.138 (stored inside the checkpoint); the dashboard pins this version.
+# Notebook logs also show 8.4.147 (03, training run) and 8.4.154 (04, testing).
+ultralytics==8.4.138
+# ByteTrack association in Ultralytics needs `lap`; the dashboard installs `lapx` (drop-in provider of `lap`).
+lapx
+
+# --- Deep learning (classifier + YOLO backend) ---
+# Not pinned by the project ("left as Colab provides them"). Training log 03 shows torch 2.11.0+cu128.
+# Install a CUDA-matched build from https://pytorch.org if you have a GPU.
+torch
+torchvision
+
+# --- Image / video processing ---
+# Dashboard pins opencv-python-headless==4.10.0.84 and removes other OpenCV variants (they share `cv2`).
+# Keep only ONE OpenCV package installed.
+opencv-python-headless==4.10.0.84
+Pillow
+numpy
+matplotlib
+pandas
+PyYAML
+
+# --- Dashboard UI (notebooks/dashboard only) ---
+gradio==6.30.0
+
+# --- Notebook runtime (not imported by the code, needed to open the notebooks locally) ---
+jupyter
+
+# Standard library modules used (no install needed):
+#   json, os, sys, glob, time, math, html, shutil, subprocess, traceback, inspect,
+#   zipfile, datetime, re, difflib, collections
+# Colab-only modules (NOT pip-installable outside Colab; notebooks 04, 06-09 and the dashboard use them
+# for file upload / Drive mount):  google.colab
+# IPython (display) is installed together with jupyter.
+# System tool: ffmpeg (optional) - used by the dashboard to re-encode annotated videos to browser-playable H.264.

@@ -1,0 +1,746 @@
+Ultralytics 8.4.147 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14913MiB)
+engine/trainer: agnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=/content/sku110k.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=30, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, keras=False, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolov8n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=yolov8n_baseline, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=/content/drive/MyDrive/SKU110K_results, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=/content/drive/MyDrive/SKU110K_results/yolov8n_baseline, save_frames=False, save_json=False, save_period=1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=2, workspace=None
+Overriding model.yaml nc=80 with nc=1
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    751507  ultralytics.nn.modules.head.Detect           [1, 16, None, [64, 128, 256]] 
+Model summary: 129 layers, 3,011,043 parameters, 3,011,027 gradients, 8.2 GFLOPs
+
+Transferred 319/355 items from pretrained weights
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks...
+AMP: downloading yolo26n.pt for AMP checks (one-time, not used for training)...
+Downloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights/yolo26n.pt': 100% ━━━━━━━━━━━━ 5.3MB 178.6MB/s 0.0s
+AMP: checks passed ✅
+train: Fast image access ✅ (ping: 0.0±0.0 ms, read: 343.1±503.3 MB/s, size: 976.4 KB)
+train: Scanning /content/datasets/SKU-110K/labels... 8216 images, 0 backgrounds, 3 corrupt: 100% ━━━━━━━━━━━━ 8219/8219 73.5it/s 1:52
+train: /content/datasets/SKU-110K/images/train_1025.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1046.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1051.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1097.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1107.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1134.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1158.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1168.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1176.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1178.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1200.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1214.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1250.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1264.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1282.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1311.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1327.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1330.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1331.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1350.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_136.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1362.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_137.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1375.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1379.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1392.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1403.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1405.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1415.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1441.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1453.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_146.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1489.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1499.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1503.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1505.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1538.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1571.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1580.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1589.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1625.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_164.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1645.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1662.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1677.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1688.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1699.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1718.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1744.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1762.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1775.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1797.jpg: 3 duplicate labels removed
+train: /content/datasets/SKU-110K/images/train_180.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1822.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1838.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1852.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1883.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1887.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1943.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1957.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1959.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1973.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1981.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_1984.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2005.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2021.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2025.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2053.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2107.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2111.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2113.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2128.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2167.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2171.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2176.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2177.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2207.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2240.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2250.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2251.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2259.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2279.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2284.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2287.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2313.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2360.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2362.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2371.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2404.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2435.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_244.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2442.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2447.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2456.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_246.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2475.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2480.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2485.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2514.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2518.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_255.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2551.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2556.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2561.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2573.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2576.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2603.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2651.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2660.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2688.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2702.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2708.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_271.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_274.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2751.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2756.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2767.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2790.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2796.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2804.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2832.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2836.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2846.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2858.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2859.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2862.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2873.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2903.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_292.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2946.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_295.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2951.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2953.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2954.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2979.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2993.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_2994.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3024.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_304.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3050.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3053.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3059.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3081.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3089.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3093.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3104.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3121.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3129.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3143.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3155.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_316.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3162.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_317.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3175.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_318.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3189.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3201.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3211.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3219.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3221.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3224.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3227.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3237.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3241.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3255.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3325.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3335.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3366.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_340.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_342.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3454.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3489.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_349.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3503.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3510.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3556.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_357.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3579.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_358.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3649.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3654.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3660.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3663.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_367.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3670.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3673.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3674.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3678.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3687.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3688.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3689.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3698.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_370.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3707.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3733.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3745.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3764.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3767.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3772.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3776.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3782.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3811.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3845.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3857.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_386.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_390.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3919.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3932.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3962.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3967.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_3977.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4008.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4010.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_402.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4024.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4035.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4050.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4058.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4080.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4085.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_41.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_412.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4167.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4174.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4183.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4200.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_422.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4222.jpg: ignoring corrupt image/label: image file is truncated (23 bytes not processed)
+train: /content/datasets/SKU-110K/images/train_4244.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4261.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4291.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4299.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4353.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_436.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4373.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4380.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_44.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4404.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4425.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4426.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4450.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4462.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4464.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4483.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4504.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4524.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4527.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4552.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4579.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4634.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4635.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4643.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4673.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_470.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4701.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4708.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4744.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4746.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4748.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4763.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4764.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4824.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4842.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4855.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4860.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_49.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4914.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4922.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4930.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4958.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_4962.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_498.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5019.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5051.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5080.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5091.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5095.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5101.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5105.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5125.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5132.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5141.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5142.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5143.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5156.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_516.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5167.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5179.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5201.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5223.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5231.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5241.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5267.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5319.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5363.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_537.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5420.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5442.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5446.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5464.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5476.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5499.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5504.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5505.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5506.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5531.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5577.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5595.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5605.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5618.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5636.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5644.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5645.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5653.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5693.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5716.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5720.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5737.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5754.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5755.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5756.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5775.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5804.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5810.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5843.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5866.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5871.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5876.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_588.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5900.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5902.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5932.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5934.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5957.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_599.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_5998.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6002.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6026.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6031.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_605.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6050.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6077.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6099.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_610.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6105.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6115.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_616.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6172.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6207.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6210.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6211.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6230.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_625.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6260.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6261.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6263.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6294.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6301.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6305.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6312.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6332.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6337.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6354.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6373.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_638.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6405.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6417.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6422.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6454.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6502.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6508.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6528.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6541.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6554.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6563.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6581.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6584.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6590.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6591.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6605.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_664.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6666.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_667.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6678.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6689.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6692.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6695.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6699.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_671.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6722.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6734.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6784.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_679.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6790.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6797.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6807.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6809.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6823.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6830.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6839.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_686.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6869.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6892.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6899.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6909.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6910.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6914.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6917.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6926.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6971.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_6998.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7018.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_703.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7105.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7140.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7141.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7143.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7147.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_715.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7163.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7204.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7217.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7266.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7281.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7322.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_733.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7340.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7358.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7392.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7393.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7407.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7456.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7501.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7502.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7511.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7516.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7550.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_756.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7572.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7594.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7603.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7629.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7631.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7636.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7639.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7664.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7697.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7709.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7724.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7742.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7769.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7776.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7801.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7829.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7835.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7840.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7858.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7870.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7876.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7877.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7891.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7899.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7901.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7907.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_791.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7910.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7949.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7953.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7959.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7978.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7981.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_7994.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8034.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8035.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8037.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8058.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8066.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8078.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8093.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8108.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8111.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8136.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_814.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8154.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8164.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8200.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_8212.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_836.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_882.jpg: ignoring corrupt image/label: image file is truncated (3 bytes not processed)
+train: /content/datasets/SKU-110K/images/train_899.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_919.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_924.jpg: ignoring corrupt image/label: image file is truncated (10 bytes not processed)
+train: /content/datasets/SKU-110K/images/train_934.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_939.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_950.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_958.jpg: corrupt JPEG restored and saved
+train: /content/datasets/SKU-110K/images/train_969.jpg: corrupt JPEG restored and saved
+train: New cache created: /content/datasets/SKU-110K/labels.cache
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+val: Fast image access ✅ (ping: 0.0±0.0 ms, read: 138.5±16.6 MB/s, size: 1182.0 KB)
+val: Scanning /content/datasets/SKU-110K/labels... 588 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 588/588 41.9it/s 14.0s
+val: /content/datasets/SKU-110K/images/val_0.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_115.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_127.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_166.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_172.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_190.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_2.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_209.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_214.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_223.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_280.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_290.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_292.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_295.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_324.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_332.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_334.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_394.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_406.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_413.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_47.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_471.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_49.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_510.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_525.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_547.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_582.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_72.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_74.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_82.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_85.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_89.jpg: corrupt JPEG restored and saved
+val: /content/datasets/SKU-110K/images/val_95.jpg: corrupt JPEG restored and saved
+val: New cache created: /content/datasets/SKU-110K/labels.cache
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.002, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+WARNING ⚠️ Dataset images contain up to 718 objects (train=576, val=718), but max_det=300. This mismatch can cap recall and produce invalid validation metrics. Raising it may increase validation cost but cannot increase model or export capacity, which may cap recall. Setting max_det=718 to match the observed maximum.
+Plotting labels to /content/drive/MyDrive/SKU110K_results/yolov8n_baseline/labels.jpg... 
+Using 8216 train, 588 val images for fraction=1.0 at imgsz=640
+Using 2 dataloader workers
+Logging results to /content/drive/MyDrive/SKU110K_results/yolov8n_baseline
+Starting training for 30 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/30       7.8G      1.836      1.298      1.113       1693        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:28
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 32.5s
+                   all        588      90968      0.789      0.723      0.779      0.427
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/30      5.39G      1.597     0.8103      1.025       2287        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:21
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.9s
+                   all        588      90968      0.831      0.749      0.814      0.454
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/30      5.39G      1.558     0.7778      1.013       2250        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:22
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 32.7s
+                   all        588      90968      0.845      0.769      0.832      0.471
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/30      5.39G      1.539     0.7598      1.006       2132        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:24
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 32.0s
+                   all        588      90968      0.857      0.773      0.841      0.482
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/30      5.39G      1.513     0.7361     0.9967       1585        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:20
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 31.9s
+                   all        588      90968      0.858      0.787      0.854      0.494
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/30      5.39G      1.501     0.7219     0.9922       1781        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:21
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 31.0s
+                   all        588      90968      0.867      0.785      0.855      0.495
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/30      5.39G       1.49     0.7107     0.9885       1798        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:16
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.7s
+                   all        588      90968       0.87      0.791      0.857      0.502
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/30      5.39G      1.478     0.6996     0.9845       1865        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:24
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 31.3s
+                   all        588      90968      0.868      0.792      0.857        0.5
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/30      5.39G      1.471      0.693     0.9812       1395        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:23
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 33.0s
+                   all        588      90968      0.869      0.793      0.861      0.508
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/30      5.39G      1.464      0.687     0.9793       1870        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:26
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.0s
+                   all        588      90968      0.864       0.79      0.866      0.507
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/30      5.39G      1.458     0.6822     0.9764       2320        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.5s
+                   all        588      90968      0.876      0.801      0.869      0.513
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/30      5.39G      1.455     0.6771     0.9768       1920        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.3s
+                   all        588      90968      0.874      0.809      0.873      0.515
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/30      5.39G      1.443     0.6673     0.9714       1981        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.2s
+                   all        588      90968       0.88      0.815      0.876      0.519
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/30      5.39G      1.444      0.667     0.9718       2320        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.0s
+                   all        588      90968      0.885      0.817      0.886      0.526
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/30      5.39G      1.437     0.6612     0.9716       1604        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 8:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.2s
+                   all        588      90968      0.882      0.818      0.881      0.524
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      16/30      5.39G       1.43     0.6557     0.9679       1709        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 8:07
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 31.4s
+                   all        588      90968      0.886       0.82      0.884      0.529
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      17/30      5.39G       1.43     0.6548     0.9682       2690        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 8:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 31.8s
+                   all        588      90968      0.889       0.82      0.888      0.529
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      18/30      5.39G      1.427     0.6511     0.9653       1820        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.3s
+                   all        588      90968      0.889      0.823      0.888      0.529
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      19/30      5.39G      1.421      0.645     0.9651       1691        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.7s/it 32.0s
+                   all        588      90968      0.888      0.828      0.893      0.536
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      20/30      5.39G      1.417     0.6425     0.9634       1319        640: 100% ━━━━━━━━━━━━ 514/514 1.0it/s 8:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 29.8s
+                   all        588      90968      0.891      0.829      0.892      0.534
+Closing dataloader mosaic
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      21/30      5.39G      1.395       0.64     0.9852       1020        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:47
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.2s
+                   all        588      90968       0.89      0.827      0.891      0.535
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      22/30      5.39G      1.388     0.6302     0.9814       1140        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:39
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.4s
+                   all        588      90968      0.891      0.828      0.896      0.538
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      23/30      5.39G      1.381     0.6245     0.9799       1205        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:35
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.4s
+                   all        588      90968      0.892      0.829      0.896      0.539
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      24/30      5.39G      1.377     0.6197     0.9775       1148        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:38
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 30.2s
+                   all        588      90968      0.892      0.831      0.896      0.541
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      25/30      5.39G      1.372     0.6145     0.9762       1106        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:38
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 29.4s
+                   all        588      90968      0.894      0.829      0.896      0.542
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      26/30      5.39G      1.371     0.6126     0.9757       1030        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:42
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 29.8s
+                   all        588      90968      0.894      0.835      0.899      0.544
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      27/30      5.39G      1.368     0.6082     0.9742       1089        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:41
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 28.7s
+                   all        588      90968      0.897      0.834      0.899      0.545
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      28/30      5.39G      1.367     0.6055     0.9726       1114        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:41
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 29.8s
+                   all        588      90968      0.899      0.836      0.901      0.546
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      29/30      5.39G      1.361     0.6013     0.9713       1122        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:40
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.6s/it 29.9s
+                   all        588      90968        0.9      0.837      0.901      0.547
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      30/30      5.39G      1.358     0.5969     0.9701       1096        640: 100% ━━━━━━━━━━━━ 514/514 1.1it/s 7:41
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 1.5s/it 28.5s
+                   all        588      90968      0.898      0.836      0.901      0.547
+
+30 epochs completed in 4.310 hours.
+Optimizer stripped from /content/drive/MyDrive/SKU110K_results/yolov8n_baseline/weights/last.pt, 6.2MB
+Optimizer stripped from /content/drive/MyDrive/SKU110K_results/yolov8n_baseline/weights/best.pt, 6.2MB
+
+Validating /content/drive/MyDrive/SKU110K_results/yolov8n_baseline/weights/best.pt...
+Ultralytics 8.4.147 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14913MiB)
+Model summary (fused): 72 layers, 3,005,843 parameters, 0 gradients, 8.1 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 19/19 2.6s/it 50.2s
+                   all        588      90968        0.9      0.837      0.901      0.547
+Speed: 0.3ms preprocess, 9.4ms inference, 0.0ms loss, 7.9ms postprocess per image
+Results saved to /content/drive/MyDrive/SKU110K_results/yolov8n_baseline

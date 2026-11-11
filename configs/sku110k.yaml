@@ -1,0 +1,12 @@
+# Copied verbatim from notebooks/detection/03_Dataset_Exploration.ipynb, cell 12
+# (the notebook writes this text to /content/sku110k.yaml before training).
+# Edit `path` to point at your local SKU-110K folder when not running in Colab.
+
+path: /content/datasets/SKU-110K
+
+train: train.txt
+val: val.txt
+test: test.txt
+
+names:
+  0: object

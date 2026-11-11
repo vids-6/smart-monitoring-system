@@ -1,0 +1,80 @@
+{
+    "median_gap": 1.7752685546875,
+    "gap_threshold": 20.0,
+    "candidate_gaps": [
+        {
+            "shelf_id": 1,
+            "left_product_index": 12,
+            "right_product_index": 13,
+            "gap": 218.49197387695312
+        },
+        {
+            "shelf_id": 1,
+            "left_product_index": 19,
+            "right_product_index": 20,
+            "gap": 23.76995849609375
+        },
+        {
+            "shelf_id": 5,
+            "left_product_index": 13,
+            "right_product_index": 14,
+            "gap": 54.8729248046875
+        },
+        {
+            "shelf_id": 6,
+            "left_product_index": 11,
+            "right_product_index": 12,
+            "gap": 91.12850952148438
+        },
+        {
+            "shelf_id": 6,
+            "left_product_index": 17,
+            "right_product_index": 18,
+            "gap": 34.99249267578125
+        },
+        {
+            "shelf_id": 7,
+            "left_product_index": 17,
+            "right_product_index": 18,
+            "gap": 320.8592224121094
+        }
+    ],
+    "estimated_positions": [
+        {
+            "shelf_id": 1,
+            "gap": 218.49197387695312,
+            "estimated_x": 612.6489105224609,
+            "estimated_y": 152.56658172607422
+        },
+        {
+            "shelf_id": 1,
+            "gap": 23.76995849609375,
+            "estimated_x": 862.0404357910156,
+            "estimated_y": 151.71781158447266
+        },
+        {
+            "shelf_id": 5,
+            "gap": 54.8729248046875,
+            "estimated_x": 339.3575439453125,
+            "estimated_y": 639.0936584472656
+        },
+        {
+            "shelf_id": 6,
+            "gap": 91.12850952148438,
+            "estimated_x": 391.5309600830078,
+            "estimated_y": 737.476318359375
+        },
+        {
+            "shelf_id": 6,
+            "gap": 34.99249267578125,
+            "estimated_x": 531.9388122558594,
+            "estimated_y": 737.5896301269531
+        },
+        {
+            "shelf_id": 7,
+            "gap": 320.8592224121094,
+            "estimated_x": 547.2199859619141,
+            "estimated_y": 869.2094421386719
+        }
+    ]
+}

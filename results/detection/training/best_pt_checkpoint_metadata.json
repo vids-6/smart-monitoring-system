@@ -1,0 +1,26 @@
+{
+  "ultralytics_version_saved": "8.4.138",
+  "date": "2026-09-03T16:09:38.561380+00:00",
+  "epoch_index_saved": 8,
+  "epochs_completed": 9,
+  "optimizer_state_present": true,
+  "best_fitness": 0.51126,
+  "names": {
+    "0": "object"
+  },
+  "nc": 1,
+  "width_multiple": 0.25,
+  "depth_multiple": 0.33,
+  "parameters": 3011043,
+  "train_metrics": {
+    "metrics/precision(B)": 0.87045,
+    "metrics/recall(B)": 0.79829,
+    "metrics/mAP50(B)": 0.86734,
+    "metrics/mAP50-95(B)": 0.51126,
+    "val/box_loss": 1.39805,
+    "val/cls_loss": 0.65762,
+    "val/dfl_loss": 0.98459,
+    "fitness": 0.51126
+  },
+  "license": "AGPL-3.0 (https://ultralytics.com/license)"
+}
